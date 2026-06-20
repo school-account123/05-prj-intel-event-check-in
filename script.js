@@ -1,6 +1,6 @@
 const form = document.getElementById("CheckInForm");
-const form = document.getElementById("attendeeNaame");
-const form = document.getElementById("teamSelect");
+const nameInput = document.getElementById("attendeeNaame");
+const teamSelect = document.getElementById("teamSelect");
 
 let count = 0;
 const maxCount = 50;
@@ -13,4 +13,18 @@ form.addEventListener("submit", function (event) {
   const teamName = teamSelect.selectedOptions[0].text;
 
   console.log(name, teamName);
+
+count++
+console.log("totalcheckins" , count);
+
+const percentage = Math.round ((count / maxcount) * 100) + '5'
+console.log('Progress:' ${percentage});
+
+const teamCounter = document.getElementById(team + "Count");
+teamCounter.textContent = parseInt(teamCounter.textContent) + 1;
+
+const message = 'welcome, ' '${name} from ${teamName}' ';
+
+form.reset();
+
 });
