@@ -1,5 +1,5 @@
-const form = document.getElementById("CheckInForm");
-const nameInput = document.getElementById("attendeeNaame");
+const form = document.getElementById("checkInForm");
+const nameInput = document.getElementById("attendeeName");
 const teamSelect = document.getElementById("teamSelect");
 
 let count = 0;
@@ -8,23 +8,29 @@ const maxCount = 50;
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const name = nameInput.value;
+  const name = nameInput.value.trim();
   const team = teamSelect.value;
   const teamName = teamSelect.selectedOptions[0].text;
 
-  console.log(name, teamName);
+  if (!name || !team) return;
 
-count++
-console.log("totalcheckins" , count);
+  // Increase total attendee count
+  count++;
+  document.getElementById("attendeeCount").textContent = count;
 
-const percentage = Math.round ((count / maxcount) * 100) + '5'
-console.log('Progress:' ${percentage});
+  // Update progress bar
+  const percentage = Math.round((count / maxCount) * 100);
+  const progressBar = document.getElementById("progressBar");
+  progressBar.style.width = percentage + "%";
 
-const teamCounter = document.getElementById(team + "Count");
-teamCounter.textContent = parseInt(teamCounter.textContent) + 1;
+  // Update greeting
+  document.getElementById("greeting").textContent =
+    `Welcome, ${name} from ${teamName}!`;
 
-const message = 'welcome, ' '${name} from ${teamName}' ';
+  // Update team count
+  const teamCounter = document.getElementById(team + "Count");
+  teamCounter.textContent = parseInt(teamCounter.textContent) + 1;
 
-form.reset();
-
+  // Reset form
+  form.reset();
 });
